@@ -1,0 +1,52 @@
+#include<stdio.h>
+
+
+/* 2.	Faça um programa em Linguagem C que receba do usuário um arquivo, e mostre na tela quantas linhas esse arquivo possui. */
+
+
+int main()
+{
+
+    {
+        char url[]="cont.txt";
+        char ch;
+        FILE *arq;
+        int cont=0;
+
+
+        printf("Informe o nome do arquivo: ");
+        scanf("%[^\n]s",url);
+
+        arq = fopen(url, "r");
+
+        if(arq == NULL){
+
+            printf("Erro, nao foi possivel abrir o arquivo\n");
+        return 1;
+
+        }else{
+
+            while((ch=fgetc(arq))!= EOF ){
+
+                if(ch == '\n')
+
+                    cont++;
+            }
+
+        if(cont == 0){
+
+            printf("O arquivo esta vazio!!");
+
+
+        }else{
+
+              printf("Contem %d linha(s) no arquivo ",cont);
+
+          }
+        }
+ fclose(arq);
+
+
+        return 0;
+    }
+}
