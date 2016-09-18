@@ -1,0 +1,90 @@
+/*
+4.	Faça um programa em C que recebe como entrada o nome de um arquivo de entrada e o nome de um arquivo de saída e o ano corrente.
+    Cada linha do arquivo de entrada contém o nome de uma pessoa ocupando 40 caracteres e o seu ano de nascimento.
+    A rotina devera ler o arquivo de entrada e gerar um arquivo de saída onde aparece o nome da pessoa seguida por uma string que
+    representa a sua idade.
+
+   •Se a idade for menor do que 18 anos, escrever menor de idade
+   •Se a idade for maior do que 18 anos, escrever maior de idade
+   •Se a idade for igual a 18 anos, escrever entrando na maior idade
+*/
+
+# include <stdio.h>
+# include <ctype.h>
+
+int main(){
+
+    char url[] = "lista_Nomes.txt";
+    char ch;
+
+    FILE *arq;
+    FILE *arq2;
+
+
+     printf("Informe o nome do arquivo a ser lido: ");
+     scanf("%[^\n]s",url);
+
+     arq = fopen(url, "r");
+
+    if(arq == NULL){
+
+        printf("Erro ao ler arquivo!!");
+        return;
+    }
+
+    char url2[] = "Arquivo_Gerado.txt";
+
+    arq2  = fopen(url2, "w");
+
+    if(arq2 == NULL){
+
+        printf("Erro ao criar Arquivo!! ");
+
+      return;
+    }
+
+    int ano_atual;
+
+    printf("informe o Ano corrente: ");
+    scanf("%d",&ano_atual);
+
+    int ano_nascimento;
+    char nome[40];
+    int idade = 0;
+
+    while((fscanf(arq,"%s %d\n", nome, &ano_nascimento))!=EOF ){
+
+            idade = ano_atual - ano_nascimento;
+
+            if(idade < 18){
+
+                fprintf(arq2 , "%s %d - Menor de idade\n",nome, idade);
+            }
+
+            if(idade == 18){
+
+                fprintf(arq2 , "%s %d - Entrando na maior idade\n",nome, idade);
+            }
+
+            if(idade > 18){
+
+                fprintf(arq2 , "%s %d - Maior de idade\n",nome, idade);
+            }
+
+
+        idade =0;
+
+        }
+
+        printf("\nArquivo gerado com sucesso!!\n");
+
+
+fclose(arq);
+fclose(arq2);
+
+
+
+return 0;
+
+
+}
