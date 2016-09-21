@@ -32,15 +32,17 @@ int main(){
         return;
     }
 
-    char url2[] = "Arquivo_Gerado.txt";
+    char url2[13];
 
-    arq2  = fopen(url2, "w");
+    printf("Informe o nome do arquivo a ser criado: ");
+    scanf("%s", url2);
+
+     arq2 = fopen( url2, "w" );
 
     if(arq2 == NULL){
 
-        printf("Erro ao criar Arquivo!! ");
-
-      return;
+        printf("Erro ao criar arquivo!!");
+        return;
     }
 
     int ano_atual;
